@@ -1,0 +1,5 @@
+$name $sender $!stack
+#if ($sid) 
+session: $sid 
+#end
+$remainder

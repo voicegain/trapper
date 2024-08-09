@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project Trapper with Jar-in-Jar Loader">
+	<!--this file was created by Eclipse Runnable JAR Export Wizard-->
+	<!--ANT 1.7 is required   -->
+    
+    <property name="third_party.libs.dir" location="../third-party/libs" />                                     
+	<target name="create_run_jar">
+		<jar destfile="trapper.jar" >
+			<manifest>
+				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+				<attribute name="Rsrc-Main-Class" value="com.resolvity.trapper.TrapCatcher" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Rsrc-Class-Path" value="./ log4j-1.2.9.jar commons-logging-1.1.jar velocity-dep-1.4.jar velocity-1.4.jar snmp4j-1.10.2.jar mail.jar activation-1.1.jar" />
+			</manifest>
+
+			<fileset dir="target/classes" excludes="**/_svn/**,**/test/java/**/*.java" />
+			<fileset dir="../utility/target/classes" excludes="log4j.properties,**/_svn/**" />
+
+			<zipfileset src="jar-in-jar-loader.zip" />
+			<fileset file="${basedir}/mail.jar" />
+
+			<fileset file="${third_party.libs.dir}/log4j-1.2.9.jar" />
+			<fileset file="${third_party.libs.dir}/commons-logging-1.1.jar" />
+			<fileset file="${third_party.libs.dir}/velocity-dep-1.4.jar" />
+			<fileset file="${third_party.libs.dir}/velocity-1.4.jar" />
+			<fileset file="${third_party.libs.dir}/activation-1.1.jar" />
+			<fileset file="${third_party.libs.dir}/snmp4j-1.10.2.jar" />
+		</jar>
+	</target>
+</project>

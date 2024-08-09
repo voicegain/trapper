@@ -1,0 +1,9 @@
+#set ($compressed = $remainder)
+#set ($compressed = $compressed.replace("com.resolvity.runtime.rconnect.", "..."))
+#set ($compressed = $compressed.replace("com.resolvity.runtime.", "..."))
+#set ($compressed = $compressed.replace("com.resolvity.", ".."))
+#if ($compressed.length() < 126)
+$compressed##
+#else
+$compressed.substring(0, 126)##
+#end
